@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { FormData } from "@/types/blog";
 import axios from "axios";
-// import { useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import ReactTextareaAutosize from "react-textarea-autosize";
 
@@ -15,7 +15,7 @@ const Formnewpost = () => {
     content: "",
   });
 
-  //   const { data } = useSession();
+  const { data } = useSession();
   //   console.log(data?.user);
 
   const handleChange = (
@@ -43,7 +43,7 @@ const Formnewpost = () => {
     } catch (error) {
       console.log(error);
     }
-    console.log(formData);
+    // console.log(formData);
   };
 
   return (
@@ -69,6 +69,7 @@ const Formnewpost = () => {
         />
       </div>
       <button
+        disabled={!data}
         type="submit"
         className=" bg-green-500 hover:bg-blue-600 text-white font-bold py-4 px-4 rounded-md focus:outline-none focus:ring focus:border-blue-400 w-full disabled:bg-gray-400">
         Submit
